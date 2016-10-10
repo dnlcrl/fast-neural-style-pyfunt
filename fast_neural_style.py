@@ -1,13 +1,15 @@
+import os
 import argparse
 import pyfunt
-from pyfunt.utils import (
-    load_t7model, load_t7checkpoint, load_parser_init, load_parser_vals)
+from pyfunt.utils import (load_t7model, load_t7checkpoint, load_parser_init, load_parser_vals)
 from fast_neural_style import (InstanceNormalization, ShaveImage, TotalVariation)
 from fast_neural_style.preprocess import (resnet_preprocess, resnet_deprocess,
                                           vgg_preprocess, vgg_deprocess)
+from fast_neural_style.utils import is_image_file
 import numpy as np
-from scipy.ndimage import imread
-from scipy.misc import imresize
+import scipy
+import scipy.ndimage
+import scipy.misc
 np.random.seed(0)
 np.seterr(all='raise')
 gb4 = 4*1024
@@ -18,11 +20,11 @@ resource.setrlimit(resource.RLIMIT_DATA, (gb4, gb4))
 import gc
 
 
-MODEL_PATH = 'models/instance_norm/candy.t7'
+MODEL_PATH = 'models/instance_norm/the_scream.t7'
 IMG_SIZE = 768
 MEDIAN_FILTER = 3
 TIMING = 0
-INPUT_IMAGE = 'images/content/chicago.jpg'
+INPUT_IMAGE = 'images/content/hoovertowernight.jpg'
 OUTPUT_IMAGE = 'out.png'
 INPUT_DIR = ''
 OUTPUT_DIR = ''
@@ -102,6 +104,22 @@ cload_parser_init = {
 load_parser_init.update(cload_parser_init)
 
 
+def instance_normalization_val(module, tmodule):
+    module.bn = pyfunt.SpatialBatchNormalization(tmodule['nOutput'],  tmodule['eps'])
+    module.bn.weight = tmodule['bn']._obj['weight']
+    module.bn.weight = tmodule['bn']._obj['bias']
+    module.bn.grad_weight = tmodule['bn']._obj['gradWeight']
+    module.bn.grad_bias = tmodule['bn']._obj['gradBias']
+    module.bn.running_mean = tmodule['bn']._obj['running_mean']
+    module.bn.running_var = tmodule['bn']._obj['running_var']
+
+cload_parser_vals = {
+    'InstanceNormalization': instance_normalization_val
+}
+
+load_parser_vals.update(cload_parser_vals)
+
+
 def custom_layers(): return
 custom_layers.InstanceNormalization = InstanceNormalization
 custom_layers.ShaveImage = ShaveImage
@@ -132,32 +150,34 @@ def main():
     preprocess = methods[preprocess_method]
 
     def run_image(in_path, out_path):
-        img = imread(in_path)
+        img = scipy.ndimage.imread(in_path)
         if opt.image_size > 0:
-            img = imresize(img, np.float(opt.image_size)/img.shape[0])
+            img = scipy.misc.imresize(img, (768, 1153, 3)) # np.float(opt.image_size)/img.shape[0]
         img = img.transpose(2, 0, 1).astype(np.float64)
         _, H, W = img.shape
         img = img.reshape(1, 3, H, W)
         img_pre = preprocess.preprocess(img)
-        import pdb; pdb.set_trace()
+
         img_out = model.forward(img_pre)
-        import pdb; pdb.set_trace()
+
         img_out = preprocess.deprocess(img_out)[0]
+        img_out = img_out.transpose(1, 2, 0)
         if opt.median_filter > 0:
-            img_out = utils.median_filter(img_out, opt.median_filter)
+            img_out = scipy.ndimage.filters.median_filter(img_out, opt.median_filter)
+        scipy.misc.imsave(out_path, img_out)
         print('Writing output image to ' + out_path)
-        out_dir = paths.dirname(out_path)
-        if not path.isdir(out_dir):
-            paths.mkdir(outdir)
-        image.save(out_path, img_out)
+        outdir = os.path.dirname(out_path)
+        if outdir is not '' and not os.path.exists(outdir):
+            os.makedirs(outdir)
+        scipy.misc.imsave(out_path, img_out)
 
     if opt.input_dir != '':
         if opt.output_dir == '':
             raise Exception('Must give -output_dir with -input_dir')
-        for fn in paths.files(opt.input_dir):
-            if utils.is_image_file(fn):
-                in_path = paths.concat(opt.input_dir, fn)
-                out_path = paths.concat(opt.output_dir, fn)
+        for fn in os.path.isfile(opt.input_dir):
+            if is_image_file(fn):
+                in_path = os.path.concat(opt.input_dir, fn)
+                out_path = os.path.concat(opt.output_dir, fn)
                 run_image(in_path, out_path)
 
     elif opt.input_image != '':

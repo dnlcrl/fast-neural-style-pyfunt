@@ -22,16 +22,18 @@ class InstanceNormalization(pyfunt.Module):
         self.bias = np.zeros(n_output)
         self.grad_weight = np.zeros(n_output)
         self.grad_weight = np.zeros(n_output)
-        self.dn = False
+        self.bn = False
 
     def update_output(self, x):
         N, C, H, W = x.shape
         if C != self.n_output:
             raise Exception('C != self.n_output')
-        if N != self.prev_N or self.bn:
+        if N != self.prev_N or not self.bn:
             self.bn = pyfunt.SpatialBatchNormalization(N * C, self.eps)
             self.prev_N = N
 
+        self.bn.weight = self.weight
+        self.bn.bias = self.bias
         input_view = x.reshape(1, N * C, H, W)
 
         self.bn.training()

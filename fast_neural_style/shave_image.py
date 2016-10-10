@@ -18,5 +18,5 @@ class ShaveImage(Module):
         N, C, H, W = x.shape
         s = self.size
         self.grad_input = np.zeros_like(x)
-        self.grad_input[:, :, s: H-s, s:W-s] = grad_output.copy()
+        self.grad_input[:, :, s:H-s, s:W-s] = grad_output.copy()
         return self.grad_input
