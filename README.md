@@ -60,6 +60,11 @@ WIP
 
 WIP
 
+## Other Examples
+
+You can check other examples of images generated with this code PyFunt on Tumblr: [1](http://dnlcrl.tumblr.com/post/151658697630/first-tests-of-a-fast-neural-style) and [2](http://dnlcrl.tumblr.com/post/151658840095/other-tests-of-a-fast-neural-style).
+
+
 <!-- 
 ## Setup
 All code is implemented in [Torch](http://torch.ch/).
