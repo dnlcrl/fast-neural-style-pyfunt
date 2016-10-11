@@ -70,6 +70,29 @@ bash models/download_style_transfer_models.sh
 
 This will download ten model files (~200MB) to the folder `models/`.
 
+## Running on new images
+The script `fast_neural_style.lua` lets you use a trained model to stylize new images:
+
+```bash
+python fast_neural_style.py \
+  -model models/eccv16/starry_night.t7 \
+  -input_image images/content/chicago.jpg \
+  -output_image out.png
+```
+
+You can run the same model on an entire directory of images like this:
+
+```bash
+python fast_neural_style.lua \
+  -model models/eccv16/starry_night.t7 \
+  -input_dir images/content/ \
+  -output_dir out/
+```
+
+You can control the size of the output images using the `-image_size` flag.
+
+The full set of options for this script is [described here](doc/flags.md).
+
 
 ## Examples
 
