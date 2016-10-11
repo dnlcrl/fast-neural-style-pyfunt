@@ -29,7 +29,7 @@ takes **50 milliseconds** on a Pascal Titan X:
 <div align='center'>
   <img src='images/styles/candy.jpg' height="225px">
   <img src='images/content/hoovertowernight.jpg' height="225px">
-  <img src='images/outputs/hoovertowernight_candy_pf.png' height="346px">
+  <img src='images/outputs/hoovertowernight_candy.png' height="346px">
 </div>
 
 Check the full readme and the original lua+torch source code here: [https://github.com/jcjohnson/fast-neural-style](https://github.com/jcjohnson/fast-neural-style)
@@ -51,7 +51,7 @@ If you find this code useful for your research, please cite
   booktitle={European Conference on Computer Vision},
   year={2016}
 }
-
+```
 ## Setup
 
 WIP
@@ -60,7 +60,6 @@ WIP
 
 WIP
 
-```
 <!-- 
 ## Setup
 All code is implemented in [Torch](http://torch.ch/).
