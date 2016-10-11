@@ -55,13 +55,23 @@ If you find this code useful for your research, please cite
 
 ## Setup
 
-WIP
 
-## Models
 
-WIP
+### Install Pyfunt (from dev branch)
+  
+    pip install git+git://github.com/dnlcrl/PyFunt.git@dev
+    
+### Pretrained Models
+Download all pretrained style transfer models by running the script
 
-## Other Examples
+```bash
+bash models/download_style_transfer_models.sh
+```
+
+This will download ten model files (~200MB) to the folder `models/`.
+
+
+## Examples
 
 You can check other examples of images generated with this code PyFunt on Tumblr: [1](http://dnlcrl.tumblr.com/post/151658697630/first-tests-of-a-fast-neural-style) and [2](http://dnlcrl.tumblr.com/post/151658840095/other-tests-of-a-fast-neural-style).
 
