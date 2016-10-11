@@ -1,6 +1,6 @@
 # fast-neural-style
 
-This a PyFunt port for the [code](https://github.com/jcjohnson/fast-neural-style) for the paper
+This a (WIP) PyFunt port for the [code](https://github.com/jcjohnson/fast-neural-style) for the paper:
 
 **[Perceptual Losses for Real-Time Style Transfer and Super-Resolution](http://cs.stanford.edu/people/jcjohns/eccv16/)**
 <br>
@@ -52,6 +52,7 @@ If you find this code useful for your research, please cite
   year={2016}
 }
 ```
+
 ## Setup
 
 WIP
