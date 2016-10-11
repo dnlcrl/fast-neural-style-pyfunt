@@ -1,6 +1,9 @@
 from pyfunt import Module
 import numpy as np
 
+'''
+NOT TESTED!!!
+'''
 
 class GramMatrix(Module):
 

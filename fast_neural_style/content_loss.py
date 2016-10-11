@@ -1,20 +1,20 @@
 from module import Module
 from pyfunt import (MSECriterion, SmoothL1Criterion)
 
-# -- --[[
-# -- Module to compute content loss in-place.
+'''
+NOT TESTED!!!
+-- Module to compute content loss in-place.
 
-# -- The module can be in one of three modes: "none", "capture", or "loss", which
-# -- behave as follows:
-# -- - "none": This module does nothing; it is basically nn.Identity().
-# -- - "capture": On the forward pass, inputs are captured as targets; otherwise it
-# --   is the same as an nn.Identity().
-# -- - "loss": On the forward pass, compute the distance between input and
-# --   self.target, store the result in self.loss, and return input. On the backward
-# --   pass, add compute the gradient of self.loss with respect to the inputs, and
-# --   add this value to the upstream gradOutput to produce gradInput.
-# -- --]]
-
+-- The module can be in one of three modes: "none", "capture", or "loss", which
+-- behave as follows:
+-- - "none": This module does nothing; it is basically nn.Identity().
+-- - "capture": On the forward pass, inputs are captured as targets; otherwise it
+--   is the same as an nn.Identity().
+-- - "loss": On the forward pass, compute the distance between input and
+--   self.target, store the result in self.loss, and return input. On the backward
+--   pass, add compute the gradient of self.loss with respect to the inputs, and
+--   add this value to the upstream gradOutput to produce gradInput.
+'''
 
 class ContentLoss(Module):
 

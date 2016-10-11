@@ -2,6 +2,7 @@ import pyfunt
 import numpy as np
 
 '''
+NOT TESTED!!!
 Utility functions for getting and inserting layers into models composed of
 hierarchies of nn Modules and nn Containers. In such a model, we can uniquely
 address each module with a unique "layer string", which is a series of integers

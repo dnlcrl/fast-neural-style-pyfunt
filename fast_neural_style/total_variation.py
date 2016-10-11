@@ -15,7 +15,7 @@ class TotalVariation(Module):
     def update_grad_input(self, x, grad_output):
         # -- TV loss backward pass inspired by kaishengtai/neuralart
         self.grad_input = np.zeros_like(x)
-        N, C, H, W  = x.shape
+        N, C, H, W = x.shape
         self.x_diff = x[:, :, 1:-2, 1:-2]
         self.x_diff -= x[:, :, 1:-2, 2:-1]
         self.y_diff = x[:, :, 1:-2, 1:-2]
@@ -23,5 +23,3 @@ class TotalVariation(Module):
         self.grad_input[:, :, 1:-2, 1:-2] += self.x_diff + self.y_diff
         self.grad_input[:, :, 1:-2, 2:-1] -= self.x_diff
         self.grad_input[:, :, 2:-1, 1:-2] -= self.y_diff
-
-

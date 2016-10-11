@@ -1,6 +1,9 @@
 import numpy as np
 from pyfunt import Module
 
+'''
+NOT TESTED!!!
+'''
 
 class DeepDreamLoss(Module):
 

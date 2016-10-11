@@ -5,6 +5,10 @@ from style_loss import StyleLoss
 from deep_dream_loss import DeepDreamLoss
 from pyfunt import Criterion
 
+'''
+NOT TESTED!!!
+'''
+
 
 class PerceptualCriterion(Criterion):
     '''Input: args is a table with the following keys:

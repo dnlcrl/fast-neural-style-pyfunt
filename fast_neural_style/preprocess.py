@@ -14,7 +14,7 @@ resnet_std = np.array([0.229, 0.224, 0.225])
 
 '''
 Preprocess an image before passing to a ResNet model. The preprocessing is easy:
-we just need to subtract the mean and divide by the standard deviation. These
+we just need to rescale from [0, 255] to [0, 1], subtract the mean and divide by the standard deviation. These
 constants are taken from fb.resnet.torch:
 
 https://github.com/facebook/fb.resnet.torch/blob/master/datasets/imagenet.lua
@@ -27,8 +27,9 @@ Input:
 
 def resnet_preprocess(img):
     check_input(img)
-    mean = img.new(resnet_mean).reshape(1, 3, 1, 1)
-    std = img.new(resnet_mean).reshape(1, 3, 1, 1)
+    img /= 255
+    mean = resnet_mean.reshape(1, 3, 1, 1)
+    std = resnet_mean.reshape(1, 3, 1, 1)
     return (img - mean) / std
 
 
@@ -36,23 +37,29 @@ def resnet_deprocess(img):
     check_input(img)
     mean = img.new(resnet_mean).reshape(1, 3, 1, 1)
     std = img.new(resnet_std).reshape(1, 3, 1, 1)
+    img *= 255
     return (img * std) + mean
 
 
 vgg_mean = np.array([103.939, 116.779, 123.68])
 
-# Preprocess an image before passing to a VGG model. We need to rescale from
-# [0, 1] to [0, 255], convert from RGB to BGR, and subtract the mean.
+'''
+Preprocess an image before passing to a VGG model. We need to convert from RGB to BGR, and subtract the mean.
 
-# Input:
-# - img: Tensor of shape (N, C, H, W) giving a batch of images. Images
+Input:
+- img: Tensor of shape (N, C, H, W) giving a batch of images. Images
 
+TODO:
+parameter for avoiding mean sub
+'''
 
 def vgg_preprocess(img):
     check_input(img)
-    return (img * 255) - vgg_mean.reshape(1, 3, 1, 1)
+    img[:, [0, 1, 2], :, :] = img[:, [2, 1, 0], :, :]
+    return img - vgg_mean.reshape(1, 3, 1, 1)
 
 
 def vgg_deprocess(img):
     check_input(img)
-    return ((img + vgg_mean.reshape(1, 3, 1, 1)) / 255)
+    img[:, [0, 1, 2], :, :] = img[:, [2, 1, 0], :, :]
+    return img + vgg_mean.reshape(1, 3, 1, 1)

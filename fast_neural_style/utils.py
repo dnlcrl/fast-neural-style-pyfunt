@@ -1,5 +1,9 @@
 import pyfunt
 
+'''
+NOT TESTED!!!
+'''
+
 
 def parse_num_list(s):
     # Parse a string of comma-separated numbers
@@ -49,6 +53,8 @@ def restore_gradsients(m):
 
 
 IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'ppm', 'pgm']
+
+
 def is_image_file(filename):
     # Hidden file are not images
     if filename[0] == '.':

@@ -1,6 +1,6 @@
 # fast-neural-style
 
-This is the code for the paper
+This a PyFunt port for the [code](https://github.com/jcjohnson/fast-neural-style) for the paper
 
 **[Perceptual Losses for Real-Time Style Transfer and Super-Resolution](http://cs.stanford.edu/people/jcjohns/eccv16/)**
 <br>
@@ -32,14 +32,15 @@ takes **50 milliseconds** on a Pascal Titan X:
   <img src='images/outputs/hoovertowernight_candy.jpg' height="346px">
 </div>
 
-In this repository we provide:
+Check the full readme and the original lua+torch source code here: [https://github.com/jcjohnson/fast-neural-style](https://github.com/jcjohnson/fast-neural-style)
+<!-- In this repository we provide:
 - The style transfer models [used in the paper](#models-from-the-paper)
 - Additional models [using instance normalization](#models-with-instance-normalization)
 - Code for [running models on new images](#running-on-new-images)
 - A demo that runs models in [real-time off a webcam](#webcam-demo)
 - Code for [training new feedforward style transfer models](doc/training.md)
 - An implementation of [optimization-based style transfer](#optimization-based-style-transfer)
-  method described by Gatys et al.
+  method described by Gatys et al. -->
 
 If you find this code useful for your research, please cite
 
@@ -50,8 +51,17 @@ If you find this code useful for your research, please cite
   booktitle={European Conference on Computer Vision},
   year={2016}
 }
-```
 
+## Setup
+
+WIP
+
+## Models
+
+WIP
+
+```
+<!-- 
 ## Setup
 All code is implemented in [Torch](http://torch.ch/).
 
@@ -233,7 +243,7 @@ this script has the following improvements:
 - Remove dependency on protobuf and [loadcaffe](https://github.com/szagoruyko/loadcaffe)
 - Support for many more CNN architectures, including ResNets
 
-The full set of options for this script is [described here](doc/flags.md#slow_neural_stylelua).
+The full set of options for this script is [described here](doc/flags.md#slow_neural_stylelua). -->
 
 ## License
 
