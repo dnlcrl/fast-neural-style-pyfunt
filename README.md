@@ -32,7 +32,7 @@ takes **50 milliseconds** on a Pascal Titan X:
   <img src='images/outputs/hoovertowernight_candy.jpg' height="346px">
 </div>
 
-Check the full readme and the original lua+torch source code here: [https://github.com/jcjohnson/fast-neural-style](https://github.com/jcjohnson/fast-neural-style)
+**Check the full readme and the original lua+torch source code here: [https://github.com/jcjohnson/fast-neural-style](https://github.com/jcjohnson/fast-neural-style)**
 <!-- In this repository we provide:
 - The style transfer models [used in the paper](#models-from-the-paper)
 - Additional models [using instance normalization](#models-with-instance-normalization)
