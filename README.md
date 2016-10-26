@@ -96,7 +96,7 @@ The full set of options for this script is [described here](doc/flags.md).
 
 ## Examples
 
-You can check other examples of images generated with this code and PyFunt on Tumblr: [1](http://dnlcrl.tumblr.com/post/151658697630/first-tests-of-a-fast-neural-style) and [2](http://dnlcrl.tumblr.com/post/151658840095/other-tests-of-a-fast-neural-style).
+You can check other examples of images generated with this code and PyFunt on Tumblr, [here](http://dnlcrl.tumblr.com/post/151658697630/first-tests-of-a-fast-neural-style) and [here](http://dnlcrl.tumblr.com/post/151658840095/other-tests-of-a-fast-neural-style).
 
 
 <!-- 
